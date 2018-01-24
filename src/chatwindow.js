@@ -1,4 +1,7 @@
-import React from 'react';
+const React  = require('react');
+import io from 'socket.io-client'; 
+const socket = io();
+
 
 // This class is the window containing all the chat components.
 // Here also recieves the messages from the class MessageInput and send to the class ChatBox
@@ -13,6 +16,7 @@ class ChatWindow extends React.Component{
 		let messages = this.state.messages;
 		messages.push({text:message});
 		this.setState({messages:messages});
+		socket.emit('message', message);
 	}
 	render(){
 		return (
