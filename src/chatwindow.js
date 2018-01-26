@@ -15,7 +15,8 @@ class ChatWindow extends React.Component{
 	}
 	sendMessage(message){
 		let messages = this.state.messages;
-		messages.push({text:message});
+		const user = "Some User";
+		messages.push({text:message, user:user});
 		this.setState({messages:messages});
 		socket.emit('message', message);
 	}
@@ -37,7 +38,8 @@ class ChatBox extends React.Component{
 	render(){
 		const messages = this.props.messages;
 		const messageList = messages.map((message, index) => {
-										return <Message identity={index} text={message.text}/>
+										return <Message identity={index} text={message.text}
+												user={message.user}/>
 									});
 		return(
 			<ul>
@@ -81,7 +83,9 @@ class Message extends React.Component{
 		super(props);
 	}
 	render(){
-		return <li key={this.props.identity} className={styles.message}>{this.props.text}</li>
+		return <li key={this.props.identity} className={styles.message}>
+					<span>{this.props.user} says:</span> {this.props.text}
+				</li>
 	}
 }
 
