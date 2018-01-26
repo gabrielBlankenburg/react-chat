@@ -1,5 +1,6 @@
 const React  = require('react');
-import io from 'socket.io-client'; 
+import io from 'socket.io-client';
+import styles from './style/style.css'; 
 const socket = io();
 
 
@@ -20,7 +21,7 @@ class ChatWindow extends React.Component{
 	}
 	render(){
 		return (
-			<div>
+			<div className={styles.chat_window}>
 				<ChatBox messages={this.state.messages}/>
 				<MessageInput messageHandler={this.sendMessage}/>
 			</div>
@@ -67,9 +68,9 @@ class MessageInput extends React.Component{
 		this.setState({message:''});
 	}
 	render(){
-		return <form onSubmit={this.handleSubmit}>
-					<input value={this.state.message} onChange={this.handleChange} />
-					<button type="submit">Send</button>
+		return <form onSubmit={this.handleSubmit} className={styles.message_input}>
+					<input value={this.state.message} onChange={this.handleChange}
+						placeHolder="Say Something" />
 				</form>
 	}
 }

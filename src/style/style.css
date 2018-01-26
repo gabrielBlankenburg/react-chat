@@ -1,0 +1,27 @@
+*, body {
+	margin: 0;
+	padding: 0;
+}
+
+/* The Content */
+:local(.chat_window){
+	height: 100vh;
+	margin: 0;
+	padding: 0;
+}
+
+/* The input */
+:local(.message_input){
+	position: absolute;
+	bottom: 3px;
+}
+
+:local(.message_input) input{
+	border-size: 1%;
+	padding: .5%;
+	width: 98.8%;
+}
+
+:local(.chat_window), :local(.message_input) {
+	width: 100%;
+}

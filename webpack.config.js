@@ -11,14 +11,20 @@ module.exports = {
 		contentBase: './public'
 	},
 	module: {
-		loaders: [{
-			test: /.js?$/,
-			loader: 'babel-loader',
-			exclude: /node_modules/,
-			query: {
-				presets: ['es2015', 'react'],
-				plugins: ['transform-object-rest-spread']
+		loaders: [
+			{
+				test: /.js?$/,
+				loader: 'babel-loader',
+				exclude: /node_modules/,
+				query: {
+					presets: ['es2015', 'react'],
+					plugins: ['transform-object-rest-spread']
+				}
+			},
+			{
+				test: /\.css$/,
+        		use: [ 'style-loader', 'css-loader' ]	
 			}
-		}]
+		]
 	}
 };
