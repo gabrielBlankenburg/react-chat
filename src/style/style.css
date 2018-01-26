@@ -10,9 +10,16 @@
 	padding: 0;
 }
 
+/* Individual Message */
+:local(.message){
+	padding: 1%;
+	color: #444;
+	background-color: #eef
+}
+
 /* The input */
 :local(.message_input){
-	position: absolute;
+	position: fixed;
 	bottom: 3px;
 }
 

@@ -81,7 +81,7 @@ class Message extends React.Component{
 		super(props);
 	}
 	render(){
-		return <li key={this.props.identity}>{this.props.text}</li>
+		return <li key={this.props.identity} className={styles.message}>{this.props.text}</li>
 	}
 }
 
