@@ -1,24 +1,30 @@
 const React  = require('react');
+const Chat = require('./messages');
+import styles from './style/style.css';
 import io from 'socket.io-client';
-import styles from './style/style.css'; 
 const socket = io();
 
+const chat = new Chat;
 
-// This class is the window containing all the chat components.
-// Here also recieves the messages from the class MessageInput and send to the class ChatBox
+// This class is the window containing all the chat components. It is responsible to send
+// messages throught the chat object and recieve it
 class ChatWindow extends React.Component{
 	constructor(props){
 		super(props);
 
 		this.sendMessage = this.sendMessage.bind(this);
 		this.state = {messages:[]};
+
+		// Listen the messages changes
+		chat.recieveMessage(messages => {
+			this.setState({messages:messages});
+		});
 	}
-	sendMessage(message){
-		let messages = this.state.messages;
+	// Send the message to the chat object
+	sendMessage(message_text){
 		const user = "Some User";
-		messages.push({text:message, user:user});
-		this.setState({messages:messages});
-		socket.emit('message', message);
+		const message = {text:message_text, user:user};
+		chat.sendMessage(message);
 	}
 	render(){
 		return (
@@ -72,7 +78,7 @@ class MessageInput extends React.Component{
 	render(){
 		return <form onSubmit={this.handleSubmit} className={styles.message_input}>
 					<input value={this.state.message} onChange={this.handleChange}
-						placeHolder="Say Something" />
+						placeholder="Say Something" />
 				</form>
 	}
 }
