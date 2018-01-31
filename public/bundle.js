@@ -21761,8 +21761,8 @@ var ChatBox = function (_React$Component2) {
 		value: function render() {
 			var messages = this.props.messages;
 			var messageList = messages.map(function (message, index) {
-				return React.createElement(Message, { identity: index, text: message.text,
-					user: message.user });
+				return React.createElement(Message, { key: index, text: message.text,
+					user: message.user, 'new': message.new });
 			});
 			return React.createElement(
 				'ul',
@@ -21838,20 +21838,42 @@ var Message = function (_React$Component4) {
 	}
 
 	_createClass(Message, [{
+		key: 'showNewMessage',
+		value: function showNewMessage() {
+			if (this.props.new) {
+				return React.createElement(
+					'li',
+					{ className: _style2.default.new_message },
+					React.createElement(
+						'span',
+						null,
+						this.props.user,
+						' says:'
+					),
+					' ',
+					this.props.text
+				);
+			} else {
+				console.log(this.props.id);
+				console.log(socket.id);
+				return React.createElement(
+					'li',
+					{ className: _style2.default.user_message },
+					React.createElement(
+						'span',
+						null,
+						this.props.user,
+						' says:'
+					),
+					' ',
+					this.props.text
+				);
+			}
+		}
+	}, {
 		key: 'render',
 		value: function render() {
-			return React.createElement(
-				'li',
-				{ key: this.props.identity, className: _style2.default.message },
-				React.createElement(
-					'span',
-					null,
-					this.props.user,
-					' says:'
-				),
-				' ',
-				this.props.text
-			);
+			return this.showNewMessage();
 		}
 	}]);
 
@@ -21869,11 +21891,13 @@ exports = module.exports = __webpack_require__(51)(false);
 
 
 // module
-exports.push([module.i, "*, body {\n\tmargin: 0;\n\tpadding: 0;\n\tfont-size: 110%;\n}\n\n/* The Content */\n._3LmwkUjDKtQJ68HVpuUpV5{\n\theight: 100vh;\n\tmargin: 0;\n\tpadding: 0;\n}\n\n/* Individual Message */\n._2jF2Ic6H996eH1t_96p89w{\n\tpadding: 1%;\n\tcolor: #444;\n\tbackground-color: #eef\n}\n\n._2jF2Ic6H996eH1t_96p89w > span{\n\tcolor: #555;\n\tfont-weight: bold;\n}\n\n/* The input */\n._1DfFqg10V-fCW1C8WMdfQI{\n\tposition: fixed;\n\tbottom: 3px;\n}\n\n._1DfFqg10V-fCW1C8WMdfQI input{\n\tborder-size: 1%;\n\tpadding: .5%;\n\twidth: 98.8%;\n}\n\n._3LmwkUjDKtQJ68HVpuUpV5, ._1DfFqg10V-fCW1C8WMdfQI {\n\twidth: 100%;\n}", ""]);
+exports.push([module.i, "*, body {\n\tmargin: 0;\n\tpadding: 0;\n\tfont-size: 110%;\n}\n\n/* The Content */\n._3LmwkUjDKtQJ68HVpuUpV5{\n\theight: 100vh;\n\tmargin: 0;\n\tpadding: 0;\n}\n\n/* Individual Message */\n.Kuwd6Z2gKGE-3K2os-a-A{\n\tbackground-color: #eef\n}\n\n.Kuwd6Z2gKGE-3K2os-a-A, ._3wrwKnUwba3KLJhVdDBMTn{\n\tpadding: 1%;\n\tcolor: #444;\n}\n\n._2jF2Ic6H996eH1t_96p89w, ._3wrwKnUwba3KLJhVdDBMTn > span{\n\tcolor: #555;\n\tfont-weight: bold;\n}\n\n/* The input */\n._1DfFqg10V-fCW1C8WMdfQI{\n\tposition: fixed;\n\tbottom: 3px;\n}\n\n._1DfFqg10V-fCW1C8WMdfQI input{\n\tborder-size: 1%;\n\tpadding: .5%;\n\twidth: 98.8%;\n}\n\n._3LmwkUjDKtQJ68HVpuUpV5, ._1DfFqg10V-fCW1C8WMdfQI {\n\twidth: 100%;\n}", ""]);
 
 // exports
 exports.locals = {
 	"chat_window": "_3LmwkUjDKtQJ68HVpuUpV5",
+	"user_message": "Kuwd6Z2gKGE-3K2os-a-A",
+	"new_message": "_3wrwKnUwba3KLJhVdDBMTn",
 	"message": "_2jF2Ic6H996eH1t_96p89w",
 	"message_input": "_1DfFqg10V-fCW1C8WMdfQI"
 };
@@ -25492,13 +25516,18 @@ var Chat = function () {
 			var _this = this;
 
 			socket.on('message', function (message) {
+				if (message.id != socket.id) {
+					message.new = true;
+				} else {
+					message.new = false;
+				}
+				_this.messages.push(message);
 				callback(_this.messages);
 			});
 		}
 	}, {
 		key: 'sendMessage',
 		value: function sendMessage(new_message) {
-			this.messages.push(new_message);
 			socket.emit('message', new_message);
 		}
 	}]);

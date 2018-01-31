@@ -12,13 +12,16 @@
 }
 
 /* Individual Message */
-:local(.message){
-	padding: 1%;
-	color: #444;
+:local(.user_message){
 	background-color: #eef
 }
 
-:local(.message) > span{
+:local(.user_message), :local(.new_message){
+	padding: 1%;
+	color: #444;
+}
+
+:local(.message), :local(.new_message) > span{
 	color: #555;
 	font-weight: bold;
 }

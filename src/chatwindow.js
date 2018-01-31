@@ -44,8 +44,8 @@ class ChatBox extends React.Component{
 	render(){
 		const messages = this.props.messages;
 		const messageList = messages.map((message, index) => {
-										return <Message identity={index} text={message.text}
-												user={message.user}/>
+										return <Message key={index} text={message.text}
+												user={message.user} new={message.new}/>
 									});
 		return(
 			<ul>
@@ -88,10 +88,21 @@ class Message extends React.Component{
 	constructor(props){
 		super(props);
 	}
-	render(){
-		return <li key={this.props.identity} className={styles.message}>
+	showNewMessage(){
+		if (this.props.new){
+			return <li className={styles.new_message}>
 					<span>{this.props.user} says:</span> {this.props.text}
 				</li>
+		} else{
+			console.log(this.props.id);
+			console.log(socket.id);
+			return <li className={styles.user_message}>
+					<span>{this.props.user} says:</span> {this.props.text}
+				</li>
+		}
+	}
+	render(){
+		return this.showNewMessage();
 	}
 }
 
