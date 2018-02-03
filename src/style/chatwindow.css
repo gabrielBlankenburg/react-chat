@@ -18,12 +18,18 @@
 
 :local(.user_message), :local(.new_message){
 	padding: 1%;
-	color: #444;
+	color: #000;
 }
 
 :local(.message), :local(.new_message) > span, :local(.user_message) > span{
-	color: #555;
 	font-weight: bold;
+}
+
+:local(.time){
+	font-weight: normal;
+	font-size: .5em;
+	color: #555;
+
 }
 
 /* The input */

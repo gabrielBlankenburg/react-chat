@@ -4,6 +4,7 @@ import styles from './style/login.css';
 import io from 'socket.io-client';
 const socket = io();
 
+// This class is responsible to choose the nickname of the user
 class Login extends React.Component{
 	constructor(props){
 		super(props);

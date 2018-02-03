@@ -14,8 +14,10 @@ app.get('/about', function(req, res){
 });
 
 io.on('connection', function(socket){
-	console.log('a user connected');
 	socket.on('message', function(msg){
+		var current_time = new Date();
+		var time = current_time.getHours() + ':' + current_time.getMinutes();
+		msg.time = time;
 		msg.id = socket.id;
 		io.emit('message', msg);
 	});

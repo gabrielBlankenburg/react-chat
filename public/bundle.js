@@ -22313,7 +22313,8 @@ var ChatBox = function (_React$Component2) {
 			var messages = this.props.messages;
 			var messageList = messages.map(function (message, index) {
 				return React.createElement(Message, { key: index, text: message.text,
-					user: message.user, 'new': message.new });
+					user: message.user, 'new': message.new,
+					time: message.time });
 			});
 			return React.createElement(
 				'ul',
@@ -22399,9 +22400,14 @@ var Message = function (_React$Component4) {
 						'span',
 						null,
 						this.props.user,
-						' says:'
+						' says ',
+						React.createElement(
+							'span',
+							{ className: _chatwindow2.default.time },
+							this.props.time
+						)
 					),
-					' ',
+					'\xA0',
 					this.props.text
 				);
 			} else {
@@ -22412,9 +22418,14 @@ var Message = function (_React$Component4) {
 						'span',
 						null,
 						this.props.user,
-						' says:'
+						' says ',
+						React.createElement(
+							'span',
+							{ className: _chatwindow2.default.time },
+							this.props.time
+						)
 					),
-					' ',
+					'\xA0',
 					this.props.text
 				);
 			}
@@ -22440,7 +22451,7 @@ exports = module.exports = __webpack_require__(25)(false);
 
 
 // module
-exports.push([module.i, "*, body {\n\tmargin: 0;\n\tpadding: 0;\n\tfont-size: 110%;\n}\n\n/* The Content */\n._1yXTuFme8Dl0XmgHXPKMVe{\n\theight: 100vh;\n\tmargin: 0;\n\tpadding: 0;\n}\n\n/* Individual Message */\n._14OJh0Mz0jP4UX3BVVJQ4q{\n\tbackground-color: #eef\n}\n\n._14OJh0Mz0jP4UX3BVVJQ4q, ._34FItX7LuUG1ZgYPO9QHf_{\n\tpadding: 1%;\n\tcolor: #444;\n}\n\n._30ntx8C4MYhpBxU5xYqgNQ, ._34FItX7LuUG1ZgYPO9QHf_ > span, ._14OJh0Mz0jP4UX3BVVJQ4q > span{\n\tcolor: #555;\n\tfont-weight: bold;\n}\n\n/* The input */\n.v2AQ5aZeWuLolFokI4Ctg{\n\tposition: fixed;\n\tbottom: 3px;\n}\n\n.v2AQ5aZeWuLolFokI4Ctg input{\n\tborder-size: 1%;\n\tpadding: .5%;\n\twidth: 98.8%;\n}\n\n._1yXTuFme8Dl0XmgHXPKMVe, .v2AQ5aZeWuLolFokI4Ctg {\n\twidth: 100%;\n}", ""]);
+exports.push([module.i, "*, body {\n\tmargin: 0;\n\tpadding: 0;\n\tfont-size: 110%;\n}\n\n/* The Content */\n._1yXTuFme8Dl0XmgHXPKMVe{\n\theight: 100vh;\n\tmargin: 0;\n\tpadding: 0;\n}\n\n/* Individual Message */\n._14OJh0Mz0jP4UX3BVVJQ4q{\n\tbackground-color: #eef\n}\n\n._14OJh0Mz0jP4UX3BVVJQ4q, ._34FItX7LuUG1ZgYPO9QHf_{\n\tpadding: 1%;\n\tcolor: #000;\n}\n\n._30ntx8C4MYhpBxU5xYqgNQ, ._34FItX7LuUG1ZgYPO9QHf_ > span, ._14OJh0Mz0jP4UX3BVVJQ4q > span{\n\tfont-weight: bold;\n}\n\n._3hNAg9qNqnpWAcqi5OST0J{\n\tfont-weight: normal;\n\tfont-size: .5em;\n\tcolor: #555;\n\n}\n\n/* The input */\n.v2AQ5aZeWuLolFokI4Ctg{\n\tposition: fixed;\n\tbottom: 3px;\n}\n\n.v2AQ5aZeWuLolFokI4Ctg input{\n\tborder-size: 1%;\n\tpadding: .5%;\n\twidth: 98.8%;\n}\n\n._1yXTuFme8Dl0XmgHXPKMVe, .v2AQ5aZeWuLolFokI4Ctg {\n\twidth: 100%;\n}", ""]);
 
 // exports
 exports.locals = {
@@ -22448,6 +22459,7 @@ exports.locals = {
 	"user_message": "_14OJh0Mz0jP4UX3BVVJQ4q",
 	"new_message": "_34FItX7LuUG1ZgYPO9QHf_",
 	"message": "_30ntx8C4MYhpBxU5xYqgNQ",
+	"time": "_3hNAg9qNqnpWAcqi5OST0J",
 	"message_input": "v2AQ5aZeWuLolFokI4Ctg"
 };
 
@@ -25612,6 +25624,8 @@ var React = __webpack_require__(6);
 var Chat = __webpack_require__(38);
 
 var socket = (0, _socket2.default)();
+
+// This class is responsible to choose the nickname of the user
 
 var Login = function (_React$Component) {
 	_inherits(Login, _React$Component);
