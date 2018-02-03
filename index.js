@@ -9,6 +9,10 @@ app.get('/', function(req, res){
   res.sendFile(__dirname + '/public/index.html');
 });
 
+app.get('/about', function(req, res){
+	res.sendFile(__dirname + '/public/index.html');
+});
+
 io.on('connection', function(socket){
 	console.log('a user connected');
 	socket.on('message', function(msg){

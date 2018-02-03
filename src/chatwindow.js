@@ -1,6 +1,6 @@
 const React  = require('react');
 const Chat = require('./messages');
-import styles from './style/style.css';
+import styles from './style/chatwindow.css';
 import io from 'socket.io-client';
 const socket = io();
 
@@ -22,8 +22,7 @@ class ChatWindow extends React.Component{
 	}
 	// Send the message to the chat object
 	sendMessage(message_text){
-		const user = "Some User";
-		const message = {text:message_text, user:user};
+		const message = {text:message_text, user:this.props.nickname};
 		chat.sendMessage(message);
 	}
 	render(){
@@ -94,8 +93,6 @@ class Message extends React.Component{
 					<span>{this.props.user} says:</span> {this.props.text}
 				</li>
 		} else{
-			console.log(this.props.id);
-			console.log(socket.id);
 			return <li className={styles.user_message}>
 					<span>{this.props.user} says:</span> {this.props.text}
 				</li>
