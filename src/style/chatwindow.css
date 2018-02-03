@@ -21,7 +21,7 @@
 	color: #444;
 }
 
-:local(.message), :local(.new_message) > span{
+:local(.message), :local(.new_message) > span, :local(.user_message) > span{
 	color: #555;
 	font-weight: bold;
 }

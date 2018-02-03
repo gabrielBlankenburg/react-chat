@@ -17,7 +17,6 @@ io.on('connection', function(socket){
 	console.log('a user connected');
 	socket.on('message', function(msg){
 		msg.id = socket.id;
-		console.log(socket.id);
 		io.emit('message', msg);
 	});
 });

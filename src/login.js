@@ -1,6 +1,6 @@
 const React  = require('react');
 const Chat = require('./messages');
-import styles from './style/chatwindow.css';
+import styles from './style/login.css';
 import io from 'socket.io-client';
 const socket = io();
 
@@ -14,6 +14,7 @@ class Login extends React.Component{
 		this.state = {nickname:''};
 	}
 	handleChange(event){
+		event.target.value = event.target.value.toUpperCase();
 		this.setState({nickname: event.target.value});
 	}
 	handleSubmit(event){
@@ -22,8 +23,8 @@ class Login extends React.Component{
 	}
 	render(){
 		return (
-			<form onSubmit={this.handleSubmit}>
-				<input type="text" value={this.state.value} placeholder="Your nickname" 
+			<form onSubmit={this.handleSubmit} className={styles.login}>
+				<input type="text" value={this.state.value} placeholder="YOUR NICKNAME" 
 					onChange={this.handleChange} />
 			</form>
 		);
