@@ -22308,8 +22308,15 @@ var ChatBox = function (_React$Component2) {
 	}
 
 	_createClass(ChatBox, [{
+		key: 'componentDidUpdate',
+		value: function componentDidUpdate() {
+			this.chat_box.scrollTo(0, this.chat_box.scrollHeight);
+		}
+	}, {
 		key: 'render',
 		value: function render() {
+			var _this3 = this;
+
 			var messages = this.props.messages;
 			var messageList = messages.map(function (message, index) {
 				return React.createElement(Message, { key: index, text: message.text,
@@ -22318,7 +22325,9 @@ var ChatBox = function (_React$Component2) {
 			});
 			return React.createElement(
 				'ul',
-				null,
+				{ className: _chatwindow2.default.chat_box, ref: function ref(ul) {
+						_this3.chat_box = ul;
+					} },
 				messageList
 			);
 		}
@@ -22336,13 +22345,13 @@ var MessageInput = function (_React$Component3) {
 	function MessageInput(props) {
 		_classCallCheck(this, MessageInput);
 
-		var _this3 = _possibleConstructorReturn(this, (MessageInput.__proto__ || Object.getPrototypeOf(MessageInput)).call(this, props));
+		var _this4 = _possibleConstructorReturn(this, (MessageInput.__proto__ || Object.getPrototypeOf(MessageInput)).call(this, props));
 
-		_this3.state = { message: '' };
+		_this4.state = { message: '' };
 
-		_this3.handleChange = _this3.handleChange.bind(_this3);
-		_this3.handleSubmit = _this3.handleSubmit.bind(_this3);
-		return _this3;
+		_this4.handleChange = _this4.handleChange.bind(_this4);
+		_this4.handleSubmit = _this4.handleSubmit.bind(_this4);
+		return _this4;
 	}
 	// Everytime an input is changed it updates the state
 
@@ -22451,7 +22460,7 @@ exports = module.exports = __webpack_require__(25)(false);
 
 
 // module
-exports.push([module.i, "*, body {\n\tmargin: 0;\n\tpadding: 0;\n\tfont-size: 110%;\n}\n\n/* The Content */\n._1yXTuFme8Dl0XmgHXPKMVe{\n\theight: 100vh;\n\tmargin: 0;\n\tpadding: 0;\n}\n\n/* Individual Message */\n._14OJh0Mz0jP4UX3BVVJQ4q{\n\tbackground-color: #eef\n}\n\n._14OJh0Mz0jP4UX3BVVJQ4q, ._34FItX7LuUG1ZgYPO9QHf_{\n\tpadding: 1%;\n\tcolor: #000;\n}\n\n._30ntx8C4MYhpBxU5xYqgNQ, ._34FItX7LuUG1ZgYPO9QHf_ > span, ._14OJh0Mz0jP4UX3BVVJQ4q > span{\n\tfont-weight: bold;\n}\n\n._3hNAg9qNqnpWAcqi5OST0J{\n\tfont-weight: normal;\n\tfont-size: .5em;\n\tcolor: #555;\n\n}\n\n/* The input */\n.v2AQ5aZeWuLolFokI4Ctg{\n\tposition: fixed;\n\tbottom: 3px;\n}\n\n.v2AQ5aZeWuLolFokI4Ctg input{\n\tborder-size: 1%;\n\tpadding: .5%;\n\twidth: 98.8%;\n}\n\n._1yXTuFme8Dl0XmgHXPKMVe, .v2AQ5aZeWuLolFokI4Ctg {\n\twidth: 100%;\n}", ""]);
+exports.push([module.i, "*, body {\n\tmargin: 0;\n\tpadding: 0;\n\tfont-size: 110%;\n}\n\n/* The Content */\n._1yXTuFme8Dl0XmgHXPKMVe{\n\theight: 100vh;\n\tmargin: 0;\n\tpadding: 0;\n}\n\n/* Individual Message */\n._14OJh0Mz0jP4UX3BVVJQ4q{\n\tbackground-color: #eef\n}\n\n._14OJh0Mz0jP4UX3BVVJQ4q, ._34FItX7LuUG1ZgYPO9QHf_{\n\tpadding: 1%;\n\tcolor: #000;\n}\n\n._30ntx8C4MYhpBxU5xYqgNQ, ._34FItX7LuUG1ZgYPO9QHf_ > span, ._14OJh0Mz0jP4UX3BVVJQ4q > span{\n\tfont-weight: bold;\n}\n\n._3hNAg9qNqnpWAcqi5OST0J{\n\tfont-weight: normal;\n\tfont-size: .5em;\n\tcolor: #555;\n\n}\n\n/* ChatBox */\n._1nDxrUx2jOR9RH5EUemdwk{\n\theight: 90vh;\n\toverflow: auto;\n}\n\n/* The input */\n.v2AQ5aZeWuLolFokI4Ctg{\n\tposition: fixed;\n\tbottom: 3px;\n}\n\n.v2AQ5aZeWuLolFokI4Ctg input{\n\tpadding: .5%;\n\twidth: 98.8%;\n}\n\n._1yXTuFme8Dl0XmgHXPKMVe, .v2AQ5aZeWuLolFokI4Ctg {\n\twidth: 100%;\n}", ""]);
 
 // exports
 exports.locals = {
@@ -22460,6 +22469,7 @@ exports.locals = {
 	"new_message": "_34FItX7LuUG1ZgYPO9QHf_",
 	"message": "_30ntx8C4MYhpBxU5xYqgNQ",
 	"time": "_3hNAg9qNqnpWAcqi5OST0J",
+	"chat_box": "_1nDxrUx2jOR9RH5EUemdwk",
 	"message_input": "v2AQ5aZeWuLolFokI4Ctg"
 };
 

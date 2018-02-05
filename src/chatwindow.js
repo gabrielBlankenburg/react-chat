@@ -40,6 +40,9 @@ class ChatBox extends React.Component{
 	constructor(props){
 		super(props);
 	}
+	componentDidUpdate(){
+		this.chat_box.scrollTo(0,this.chat_box.scrollHeight);
+	}
 	render(){
 		const messages = this.props.messages;
 		const messageList = messages.map((message, index) => {
@@ -48,7 +51,7 @@ class ChatBox extends React.Component{
 												time={message.time}/>
 									});
 		return(
-			<ul>
+			<ul className={styles.chat_box} ref={(ul) => {this.chat_box = ul}}>
 				{messageList}
 			</ul>
 		)

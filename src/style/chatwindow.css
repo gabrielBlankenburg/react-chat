@@ -32,6 +32,12 @@
 
 }
 
+/* ChatBox */
+:local(.chat_box){
+	height: 90vh;
+	overflow: auto;
+}
+
 /* The input */
 :local(.message_input){
 	position: fixed;
@@ -39,7 +45,6 @@
 }
 
 :local(.message_input) input{
-	border-size: 1%;
 	padding: .5%;
 	width: 98.8%;
 }
